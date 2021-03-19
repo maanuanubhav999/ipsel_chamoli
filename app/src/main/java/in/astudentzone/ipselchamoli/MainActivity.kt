@@ -5,20 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.View.*
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.android.volley.AuthFailureError
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.VolleyError
-import com.android.volley.toolbox.JsonArrayRequest
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
-import org.json.JSONException
-import org.json.JSONObject
+import androidx.core.view.isVisible
 import retrofit2.Call
 import retrofit2.Callback
 
@@ -26,7 +18,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        val button = findViewById<TextView>(R.id.button)
+        button.visibility = GONE
         val signin= findViewById<Button>(R.id.button2)
 
     }
@@ -82,6 +75,12 @@ class MainActivity : AppCompatActivity() {
         return newsdata
     }
 
+
+
+    fun showbutton2(view: View) {
+        val buttonClick= findViewById<TextView>(R.id.button)
+            buttonClick.visibility= VISIBLE
+    }
 
 
 }
