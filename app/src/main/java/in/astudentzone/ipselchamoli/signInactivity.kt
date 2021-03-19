@@ -47,7 +47,16 @@ class signInactivity : AppCompatActivity() {
 
                 val data: DataFromAPIFormat? = response.body()
                 val display= data?.message
-                box.text=display
+                val test = display?.length
+                if (test != null) {
+                    if (test.toInt()<=8){
+                        box.text="YOUR APPLICATION IS  $display WITH RESPECTIVE DEPARTMENT"
+                    } else{
+                        box.text="YOUR APPLICATION IS  ${display.substring(0,8)} AND  ${display.substring(8)}"
+                    }
+                }
+                Log.d("testingversion", test.toString())
+
             }
 
             override fun onFailure(call: Call<DataFromAPIFormat>, t: Throwable) {
