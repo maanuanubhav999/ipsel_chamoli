@@ -3,6 +3,7 @@ package `in`.astudentzone.ipselchamoli
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.Dialog
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -175,8 +176,21 @@ class registration : AppCompatActivity() {
             Response.Listener<String> { response ->
                 try {
                     val obj = JSONObject(response)
-                    Toast.makeText(applicationContext, obj.getString("message"), Toast.LENGTH_LONG)
-                        .show()
+
+
+                     var lengthTest= obj.getString("message").length.toString()
+                    //intent to main page (particularly is successful)
+                    if (lengthTest=="32"){
+                        //place a intent here
+                        Toast.makeText(applicationContext, obj.getString("message") +" and forwarded to concern department", Toast.LENGTH_LONG)
+                            .show()
+                        val intentForMain = Intent(this, MainActivity::class.java)
+                        startActivity(intentForMain)
+                    }
+                    else{
+                        Toast.makeText(applicationContext, obj.getString("message"), Toast.LENGTH_LONG)
+                            .show()
+                    }
                 } catch (e: JSONException) {
                     e.printStackTrace()
                 }
